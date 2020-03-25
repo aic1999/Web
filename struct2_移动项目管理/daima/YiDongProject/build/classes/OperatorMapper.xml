@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" 
+>
+<mapper namespace="com.yidong.Mapper.OperatorMapper">
+   <select id="findAllOperator" resultType="com.yidong.po.TOperator">
+       select * from toperator
+   </select>
+   <select id="findOperctorAdminByName" parameterType="java.lang.String" resultType="java.lang.String">
+      select Is_Admin from toperator where Operator_Name=#{value}
+   </select>
+   <insert id="addOperator" parameterType="com.yidong.po.TOperator">
+      insert into toperator(Operator_ID,Operator_Name,Operator_Pwd,Is_Admin) values(#{Operator_ID},#{Operator_Name},#{Operator_Pwd},#{Is_Admin})
+   </insert>
+   <update id="updateOper" parameterType="com.yidong.po.TOperator">
+      update toperator set Operator_Name=#{Operator_Name},Operator_Pwd=#{Operator_Pwd},Is_Admin=#{Is_Admin} where Operator_ID=#{Operator_ID}
+   </update>
+   <select id="findOperatorByName" parameterType="java.lang.String"  resultType="com.yidong.po.TOperator">
+       select * from toperator where Operator_Name = #{value}
+   </select>
+   
+   
+   
+   
+   <insert id="insertNumByTtoT" parameterType="com.yidong.po.TMobiles">
+       insert into tmobiles(MOBILE_NUMBER,MOBILE_TYPE,IS_AVAILABLE) values (#{MOBILE_NUMBER},#{MOBILE_TYPE},'Y')
+   </insert>
+   <insert id="insertChargeItem" parameterType="com.yidong.po.TCharge">
+       insert into tcharge(CHARGE_CODE,CHARGE_NAME,CHARGE) values(#{CHARGE_CODE},#{CHARGE_NAME},#{CHARGE})
+   </insert>
+   <select id="findAllChargeCode" resultType="java.lang.String">
+       select CHARGE_CODE from tcharge
+   </select>
+   <insert id="addChargeRule" parameterType="com.yidong.po.TChargeRule">
+   	    insert into tcharge_rule values(#{FUNC_ID},#{CHARGE_CODE},#{FUNC_NAME})
+   	</insert>
+   	<select id="findChargeCodeByName" parameterType="java.lang.String" resultType="java.lang.String">
+   	    select CHARGE_CODE from tcharge where CHARGE_NAME=#{value}
+   	</select>
+   	<update id="updateChargeByCode" parameterType="com.yidong.po.TCharge">
+   	    update tcharge set CHARGE=#{CHARGE} where CHARGE_CODE=#{CHARGE_CODE}
+   	</update>
+   	<delete id="deleteChargeRuleByName" parameterType="java.lang.String">
+   	    delete from tcharge_rule where FUNC_NAME=#{value}
+   	</delete>
+   	<select id="findAllChargeRule" resultType="com.yidong.po.TChargeRule">
+   	    select * from tcharge_rule
+   	</select>
+   
+   
+   
+   <insert id="insertCustomer" parameterType="com.yidong.po.TCustomer">
+   		insert into tcustomer(ID_TYPE,ID_NUMBER)values(#{ID_TYPE},#{ID_NUMBER})
+   	</insert>
+   	<update id="updateCustomer" parameterType="com.yidong.po.TCustomer">
+   		update tcustomer set CUSTOMER_NAME=#{CUSTOMER_NAME},CUSTOMER_BIRTHDAY=#{CUSTOMER_BIRTHDAY},CUSTOMER_SEX=#{CUSTOMER_SEX},CUSTOMER_ADDRESS=#{CUSTOMER_ADDRESS}
+   		where ID_NUMBER=#{ID_NUMBER}
+   	</update>
+   	<select id="findCustomerByNum" parameterType="java.lang.String"  resultType="com.yidong.po.TCustomer">
+   	    select * from tcustomer where ID_NUMBER=#{value}
+   	</select>
+   	
+   	
+   	
+   	<select id="isAvailableNum" parameterType="java.lang.String" resultType="java.lang.String">
+   	    select IS_AVAILABLE from tmobiles where MOBILE_NUMBER=#{value}
+   	</select>
+   	<update id="changeAvailableNum" parameterType="java.lang.String" >
+   	    update tmobiles set IS_AVAILABLE='N' where MOBILE_NUMBER=#{value}
+   	</update>
+   	<select id="addUser" parameterType="com.yidong.po.TUser">
+   	    insert into tuser(MOBILE_NUMBER,CUSTOMER_ID,ROAMING_STATUS,COM_LEVEL) values(#{MOBILE_NUMBER},#{CUSTOMER_ID},#{ROAMING_STATUS},#{COM_LEVEL})
+   	</select>
+   	
+   	
+   	
+   	
+   	
+   	
+   	
+</mapper>

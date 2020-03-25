@@ -1,0 +1,118 @@
+
+1、创建学生表 
+(1)student
+create table student
+(sno char(10) primary key ,
+sname varchar(8) ,
+ssex char(2) ,
+sbirthday date default '1992-01-01',
+saddress varchar(50),
+sdept char(16),
+speciality varchar(20) ,
+constraint a1 check(ssex='男' or ssex='女') )
+engine=INNODB default charset=utf8 collate=utf8_bin;
+
+(2)course课程名称
+
+create table course
+(cno char(5) primary key ,
+cname varchar(20)  not null);
+
+(3)sc成绩
+
+create table sc
+(sno char(10),
+cno char(5),
+degree decimal(4,1),
+constraint a1 primary key (sno,cno),
+constraint a2 check(degree>=0 and degree <=100),
+constraint a3 foreign key (sno) references student(sno),
+constraint a4 foreign key (cno) references course(cno))
+engine=INNODB default charset=utf8 collate=utf8_bin;
+
+(4)teacher表
+create table teacher
+(tno char(3) primary key ,
+tname varchar(8) ,
+tsex char(2) ,
+sbirthday date default '1992-01-01',
+tdept char(16),
+constraint a1 check(tsex='男' or tsex='女') )
+engine=INNODB default charset=utf8 collate=utf8_bin;
+
+(5)teachint表
+create table teaching
+(cno char(5),
+tno char(3),
+ctrem tinyint,
+constraint a1 primary key (cno,tno))
+engine=INNODB default charset=utf8 collate=utf8_bin;
+
+2、插入单条记录
+
+insert into student values ('20050101','李勇','男','1987-01-12','山东济南','计算机工程系','计算机应用');
+
+3、插入多条记录
+(1)student
+insert into student values
+('20050201','刘晨','女','1988-06-04','山东青岛','信息工程系','电子商务'),
+
+('20050301','王敏','女','1989-12-13','江苏苏洲','数学系','数学'),
+
+
+('20050202','张立','男','1988-08-25','河北唐山','信息工程系','电子商务'),
+
+('20050203','张立军','女','1988-06-05','山东青岛','信息工程系','电子商务');
+
+
+
+insert into student values
+
+
+('20050205','王兰','女','1989-12-13','江苏苏洲','信息工程系','数学'),
+
+
+('20050206','张军','男','1988-08-25','河北唐山','信息工程系','电子商务'),
+('20050207','王兰','女','1989-12-13','江苏苏洲','信息工程系','数学'),
+
+
+('20050208','张军','男','1988-08-25','河北唐山','信息工程系','电子商务'),
+
+('20050209','张春明','女','1988-06-05','山东青岛','信息工程系','电子商务'),
+
+('20050210','张春明','女','1988-06-05','山东青岛','信息工程系','电子商务');
+(2)course
+
+insert into course values
+('c01','数据库'),
+('c02','数学'),
+('c03','信息工程系统'),
+('c04','操作系统');
+
+(3)sc
+insert into sc values
+('20050101','c04',91),
+('20050101','c02',85),
+('20050101','c03',88),
+('20050201','c02',90),
+('20050201','c03',80);
+
+(4)teacher
+
+insert into teacher values
+('101','李新','男','1977-01-12','计算机工程系'),
+
+('102','钱军','女','1968-06-04','计算机工程系'),
+
+
+('201','王小花','女','1979-12-23','信息工程系'),
+
+('202','张小青','男','1968-08-25','信息工程系');
+
+(5)teaching
+insert into teaching  values
+('c01','101',2),
+('c02','102',1),
+('c03','201',3),
+('c04','202',4);
+

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="batisDemo" extends="struts-default">
+	  <action name="main" class="com.yidong.action.MainAction" method="login">
+	     <result>/main.jsp</result>
+	     <result name="input">/index.jsp</result>
+	  </action>
+	  
+	  <action name="addNum" class="com.yidong.action.Mobiles" method="add">
+	      <result>/resource.jsp</result>
+	      <result name="input">/main.jsp</result>
+	  </action>
+	  
+	  <action name="chargeItem" class="com.yidong.action.ChargeAction" method="chargeItem">
+	      <result>/charge.jsp</result>
+	      <result name="input">/charge.jsp</result>
+	  </action>
+	  <action name="chargeRule" class="com.yidong.action.chargeRuleAction" method="addChargeRule">
+	      <result>/charge.jsp</result>
+	      <result name="input">/charge.jsp</result>
+	  </action>
+	  
+	  <action name="insertcustomer" class="com.yidong.action.TCustomerAction" method="add">
+	  	<result>/newCustomer1.jsp</result>
+	  	<result name="input">/newCustomer.jsp</result>
+	  </action>
+	  <action name="inserttwo" class="com.yidong.action.TCustomerAction"  method="updateCustomer">
+	  	<result >/newUser.jsp</result>
+	  	<result name="input">/newCustomer1.jsp</result>
+	  </action>
+	  <action name="insertUser" class="com.yidong.action.TUserAction" method="addUser">
+	    <result>/saveInfo.jsp</result>
+	    <result name="input">/newUser.jsp</result>
+	  </action>
+	  
+	  
+	  <action name="addOperator" class="com.yidong.action.OperatorAction" method="addOperator">
+	     <result>/newOperator.jsp</result>
+	     <result name="input">/newOperator.jsp</result>
+	  </action>
+	  <action name="LogoutAction" class="com.yidong.action.LogoutAction" method="execute">
+	  	<result>/index.jsp</result>
+	  </action>
+	</package>
+</struts>
